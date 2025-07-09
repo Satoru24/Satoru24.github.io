@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sayuni Kavinhara - Web Developer </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Navigation */
+        .header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4e5960;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            background: rgb(234, 234, 236);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid #e9ecef;
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #133252;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .email {
+            color: #889eac;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            word-break: break-word;
+        }
+
+        .bio {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .intro-text {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Technologies Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            color: #555;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #2c4556;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: #4e7995;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #4e7c9b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #3e6179;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            background: #345a72;
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s, transform 0.3s;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .button:hover {
+            background: #3e5a6d;
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            background: #95a5a6;
+        }
+
+        .button-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .sidebar {
+                position: static;
+                text-align: center;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">SAYUNI KAVINHARA</a>
+            <ul class="nav-links">
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#projects">PROJECTS</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar fade-in">
+            <img src="sayu.jpg" alt="Profile Picture" class="profile-img">
+            <h1 class="name">SAYUNI KAVINHARA</h1>
+            <p class="email">sayu.kavin@gmail.com</p>
+            <p class="bio">
+                Hi, I'm Sayuni. I am a Undergraduate Software Engineering undergraduate passionate about software development, web technologies, and problem-solving. I love building innovative projects and contributing to open-source communities.
+            </p>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content fade-in">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title">ABOUT ME</h2>
+                <p class="intro-text">
+                    WEB DEVELOPER | FULL-STACK ENTHUSIAST | PROBLEM SOLVER
+                </p>
+                <p style="color: #666; line-height: 1.8; text-align: center; margin-bottom: 2rem;">
+                    I'm a passionate software development student with experience in full-stack web development, IoT systems, real-world tech projects and software engineering. I enjoy tackling complex problems and building user-friendly solutions.
+                </p>
+                <div style="text-align: center;">
+                    <a href="https://drive.google.com/file/d/1-c8_3WvF2ahJwGspUEY7DMDpXKkP27ud/view?usp=sharing" class="button">Download Resume</a>
+                    <a href="https://github.com/Satoru24" class="button button-secondary">View GitHub</a>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2 class="section-title">MAIN TECHNOLOGIES</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">Java</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">Laravel</div>
+                    <div class="tech-item">HTML & CSS</div>
+                    <div class="tech-item">Node.js</div>
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">MySQL</div>
+                    <div class="tech-item">Git</div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="section">
+                <h2 class="section-title">FEATURED PROJECTS</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3 class="project-title">Human Elephant Conflict Detection system [Final year project]</h3>
+                        <p class="project-description">
+                            Designed and implemented an elephant detection and alert system using Raspberry Pi and OpenCV. Developed a real-time image recognition pipeline with Python to identify elephants in video feeds
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">Arduino IDE</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/drive/folders/1p1btdiTW_n3x892U6l-OZlwRBFd3PAph?usp=sharing" class="project-link">Live Demo</a>
+                            <a href="https://github.com/Satoru24/final-year-project.git" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3 class="project-title">Full-Stack Development: E Commerce Platform for traditional handcrafted items</h3>
+                        <p class="project-description">
+                            Collaborated on a full-stack web app using the MERN stack (MongoDB, Express, React, Node.js) to promote Sri Lankan handcrafted products. Contributed to unit and integration testing with Jest and React Testing Library to ensure robust frontend functionality. Participated in manual, automated, and usability testing to improve product reliability and user experience
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/bhathiknk/ino_store_web.git" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3 class="project-title">An E-commerce furniture web application</h3>
+                        <p class="project-description">
+                            This project directly applies the principles of Human-Computer Interaction through its focus on user-centered design methodologies, incorporating iterative usability testing and responsive adjustments throughout the development process.    
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/gjdnawarathna/Furniture_Designing-_application.git" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section">
+                <h2 class="section-title">GET IN TOUCH</h2>
+                <div class="contact-info">
+                    <p>I'm always open to discussing new opportunities, collaborations, or interesting projects. Feel free to reach out!</p>
+                </div>
+                <div class="contact-links">
+                    <a href="sayu.kavin@gmail.com" class="button">Email </a>
+                    <a href="www.linkedin.com/in/sayuni-kavinhara" class="button button-secondary">LinkedIn</a>
+                    <a href="https://github.com/Satoru24" class="button button-secondary">GitHub</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.1s';
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .tech-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (if needed)
+        const logo = document.querySelector('.logo');
+        const navLinks = document.querySelector('.nav-links');
+        
+        // Add active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
